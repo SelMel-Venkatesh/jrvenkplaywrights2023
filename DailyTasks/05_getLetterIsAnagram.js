@@ -1,7 +1,7 @@
 let inputtext1 = "listen";
 let inputtext2 = "silent";
 getTextIsAnagram(inputtext1, inputtext2);
-//getTextIsAnagram("hello", "world");
+getTextIsAnagram("hello", "world");
 function getTextIsAnagram(inputtext1, inputtext2) {
   let numsize = inputtext1.length;
   let iscontain;
