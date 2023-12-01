@@ -26,7 +26,7 @@ function getStringToChar(inputname) {
     strreverse = strreverse + element;
   }
   console.log("strreverse : " + strreverse);
-  if (inputname == strreverse) {
+  if (inputname === strreverse) {
     console.log("Given Input data is Palidrome");
   } else {
     console.log("Given Input data is not Palidrome");
