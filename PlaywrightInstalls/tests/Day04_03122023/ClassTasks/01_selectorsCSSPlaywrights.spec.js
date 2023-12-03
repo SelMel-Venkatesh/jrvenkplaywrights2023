@@ -1,16 +1,16 @@
 import { test, chromium } from "@playwright/test";
 
-test("To launch a Chrome Browser Instance", async () => {
-  //to Laumcn the Chromium browser instance
+test("To launch a TestLeaf taps -create lead using css and playwrights selectors", async () => {
   const browser = await chromium.launch({ headless: false, channel: "chrome" });
   const context = await browser.newContext();
   const page = await context.newPage();
   await page.goto("http://leaftaps.com/opentaps/control/main");
   await page.waitForLoadState("load");
-  await page.locator("xpath=//input[@id='username']").fill("Demosalesmanager");
-  await page.locator("xpath=//input[@id='password']").fill("crmsfa");
-  await page.locator("xpath=//input[@class='decorativeSubmit']").click();
-  await page.waitForLoadState("load");
+  await page.getByLabel("Username").fill("Demosalesmanager");
+  await page.getByLabel("Password").fill("crmsfa");
+  await page.click("input.decorativeSubmit");
+
+  await page.waitForTimeout(10000);
   console.log(
     "************************************************************************************************"
   );
@@ -20,11 +20,9 @@ test("To launch a Chrome Browser Instance", async () => {
   );
   console.log("get URL : " + (await page.url()));
 
-  console.log(
-    "************************************************************************************************"
-  );
-  await page.locator("xpath=//a[contains(text(),'CRM/SFA')]").click();
+  await page.click("text=CRM/SFA");
   await page.waitForLoadState("load");
+
   console.log(
     "************************************************************************************************"
   );
@@ -38,7 +36,7 @@ test("To launch a Chrome Browser Instance", async () => {
     "************************************************************************************************"
   );
 
-  await page.locator("//a[text()='Leads']").click();
+  await page.click("text=Leads");
   await page.waitForLoadState("load");
   console.log(
     "************************************************************************************************"
@@ -52,7 +50,8 @@ test("To launch a Chrome Browser Instance", async () => {
   console.log(
     "************************************************************************************************"
   );
-  await page.locator("//a[text()='Create Lead']").click();
+
+  await page.click("text=Create Lead");
   await page.waitForLoadState("load");
   console.log(
     "************************************************************************************************"
@@ -70,16 +69,11 @@ test("To launch a Chrome Browser Instance", async () => {
   console.log(
     "************************************************************************************************"
   );
-  await page
-    .locator("//input[@id='createLeadForm_companyName']")
-    .fill("ATENA HEALTH");
-  await page
-    .locator("//input[@id='createLeadForm_firstName']")
-    .fill("ATENA FIRSTNAME");
-  await page
-    .locator("//input[@id='createLeadForm_lastName']")
-    .fill("ATENA LASTNAME");
-  await page.locator("//input[@name='submitButton']").click();
+
+  await page.fill("input[id='createLeadForm_companyName']", "ATENA HEALTH");
+  await page.fill("input[id='createLeadForm_firstName']", "ATENA FIRSTNAME");
+  await page.fill("input[id='createLeadForm_lastName']", "ATENA LASTNAME");
+  await page.click("input[name='submitButton']");
   await page.waitForLoadState("load");
   console.log(
     "************************************************************************************************"
